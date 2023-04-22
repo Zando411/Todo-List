@@ -5,9 +5,117 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo-List App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/79ed90be6b.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="list-sidebar">
+      <h1>
+        Lists <i class="fa-solid fa-plus hover" style="color: #f8f7f9"></i>
+      </h1>
+      <div class="lists">
+        <div class="list-item" id="list-1">
+          <h3 class="list-text hover current">List 1</h3>
+          <i class="fa-solid fa-minus hover fa-lg" style="color: #f8f7f9"></i>
+        </div>
+        <div class="list-item" id="list-2">
+          <h3 class="list-text hover">List 1</h3>
+          <i class="fa-solid fa-minus hover fa-lg" style="color: #f8f7f9"></i>
+        </div>
+        <div class="list-item" id="list-3">
+          <h3 class="list-text hover">Really really long list number 17.16</h3>
+          <i class="fa-solid fa-minus hover fa-lg" style="color: #f8f7f9"></i>
+        </div>
+      </div>
+    </div>
+    <div id="enter-info">
+      <div class="info-field">
+        <label for="name">Task Name</label>
+        <input
+          type="text"
+          class="task-input"
+          name="name"
+          id="name"
+          placeholder="e.g. Take out the trash"
+        />
+      </div>
+      <div class="info-field">
+        <label for="description">Description</label>
+        <input
+          class="task-input"
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Add some extra info"
+        />
+      </div>
+      <div class="info-field">
+        <label for="dueDate">Time</label>
+        <input
+          type="date"
+          class="task-input"
+          name="dueDate"
+          id="date"
+          placeholder="Pick a date"
+        />
+      </div>
+      <div class="info-field">
+        <label for="priority">Priority</label>
+        <select name="priority" id="priority">
+          <option value="low">Low</option>
+          <option value="med">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="info-field">
+        <h4 id="error-text">*Please fill all fields</h4>
+        <button id="add-task">
+          <i class="fa-solid fa-plus" style="color: #f8f7f9"></i>
+          Add Task
+        </button>
+      </div>
+    </div>
+    <div id="tasks">
+      <div id="task-header">
+        <div><p>Title</p></div>
+        <div><p>Description</p></div>
+        <div><p>Time</p></div>
+        <div><p class="last">Priority</p></div>
+      </div>
+      <div id="current-tasks">
+        <div class="task-item">
+          <div class="checkbox">
+            <input type="checkbox" name="task" id="Task-0" />
+            <div>This is the task</div>
+          </div>
+          <div>
+            We must complete this task soon. We really really do!!!! Important!!
+          </div>
+          <div>08/20/2005</div>
+          <div>High</div>
+        </div>
+        <div class="task-item">
+          <div class="checkbox">
+            <input type="checkbox" name="task" id="Task-1" checked />
+            <p>This is the task</p>
+          </div>
+          <div>
+            We must complete this task soon. We really really do!!!! Important!!
+          </div>
+          <div>08/20/2005</div>
+          <div>High</div>
+        </div>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
