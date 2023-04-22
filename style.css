@@ -1,0 +1,290 @@
+:root {
+  --primary-color: #2b2d42;
+  --tertiary-color: #cc2936;
+  --secondary-color: #f8f7f9;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* START */
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-rows: 15vh 1fr;
+  grid-template-columns: 10% 1fr;
+  grid-template-areas:
+    'info info'
+    'side todo';
+}
+
+label {
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+  align-self: center;
+}
+
+#enter-info {
+  grid-area: info;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 10vh;
+  gap: 1rem;
+}
+
+#add-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  gap: 6px;
+  width: 144px;
+}
+
+.task-input {
+  background-color: var(--secondary-color);
+  padding: 0.5rem;
+  line-height: 25px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.info-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+select {
+  box-sizing: unset;
+  background-color: var(--secondary-color);
+  padding: 0.5rem;
+  height: 27px;
+  border: none;
+  border-radius: 5px;
+}
+
+#list-sidebar {
+  text-align: center;
+  grid-area: side;
+  padding: 1rem;
+}
+
+#list-sidebar h1 {
+  border-bottom: 2px var(--tertiary-color) solid;
+  margin-bottom: 8px;
+}
+
+h3.list-text {
+  text-align: center;
+  padding: 4px;
+  cursor: pointer;
+  opacity: 50%;
+  width: 80%;
+  margin: 0;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h3.current {
+  opacity: 100%;
+}
+
+i {
+  cursor: pointer;
+}
+
+.hover {
+  opacity: 50%;
+}
+
+.hover:hover {
+  opacity: 100%;
+}
+
+#tasks {
+  grid-area: todo;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  gap: 4px;
+}
+
+#task-header {
+  margin: 0 auto;
+  width: 80%;
+  background: var(--tertiary-color);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  place-items: center center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+#task-header div {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#task-header div p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: 100%;
+  border-right: 2px solid var(--secondary-color);
+}
+
+#task-header div p.last {
+  border: none;
+}
+
+.task-item {
+  color: black;
+  margin: 0 auto;
+  width: 80%;
+  background: var(--secondary-color);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  place-items: center center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#current-tasks {
+  gap: 4px;
+  display: grid;
+  grid-auto-rows: minmax(75px, max-content);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.checkbox p {
+  color: black;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 2px solid var(--tertiary-color);
+  border-radius: 4px;
+  background-color: var(--secondary-color);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+/* style the checkbox when it's checked */
+input[type='checkbox']:checked {
+  background-color: var(--tertiary-color);
+  border-color: var(--tertiary-color);
+}
+
+#error-text {
+  display: none;
+  color: var(--tertiary-color);
+}
