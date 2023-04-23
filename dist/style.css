@@ -292,11 +292,37 @@ input[type='checkbox']:checked {
   color: var(--tertiary-color);
 }
 
-.task-item div {
+.task-item p {
   word-break: break-word;
+  color: black;
 }
 
 .completed {
-  opacity: 95%;
+  opacity: 50%;
+}
+
+.completed p {
   text-decoration: line-through;
+}
+
+.last-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+button.delete-task-btn {
+  margin-left: 10%;
+  background-color: red;
+  justify-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+  padding: 8px;
+  width: 80px;
+  border: none;
+  border-radius: 10px;
 }

@@ -1,3 +1,5 @@
+import addEventListeners from './displayHandler';
+
 function getInputValues() {
   const name = document.getElementById('name').value;
   const description = document.getElementById('description').value;
@@ -33,15 +35,30 @@ function createTask(name, description, date, priority) {
 
   let newTaskHTML = `
   <div class="checkbox">
-  <input type="checkbox" name="task" id="Task-1" />
-  <div>${name}</div>
-  </div>
-  <div>${description}</div>
-  <div>${date}</div>
-  <div>${priority}</div>`;
+            <input type="checkbox" name="task" id="Task-1" />
+            <p>${name}</p>
+          </div>
+          <p>
+            ${description}
+          </p>
+          <p>${date}</p>
+          <div class="last-box">
+            <p>${priority}</p>
+            <button class="delete-task-btn">Delete</button>`;
 
   newTask.innerHTML = newTaskHTML;
   currentTasks.appendChild(newTask);
+
+  addEventListeners();
 }
 
-export { getInputValues, createTask };
+function checkCheckbox(event) {
+  const taskItem = this.closest('.task-item');
+  if (this.checked) {
+    taskItem.classList.add('completed');
+  } else {
+    taskItem.classList.remove('completed');
+  }
+}
+
+export { getInputValues, createTask, checkCheckbox };
