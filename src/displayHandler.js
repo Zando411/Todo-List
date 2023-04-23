@@ -1,3 +1,4 @@
+import { closeListForm, openListForm } from './forms';
 import { getInputValues, createTask, checkCheckbox } from './taskLogic';
 
 function addEventListeners() {
@@ -11,6 +12,12 @@ function addEventListeners() {
   checkboxInputs.forEach((checkbox) => {
     checkbox.addEventListener('change', checkCheckbox);
   });
+
+  const list = document.getElementById('new-list');
+  list.addEventListener('click', openListForm);
+
+  const closeForm = document.getElementById('close-form');
+  closeForm.addEventListener('click', closeListForm);
 }
 
-export default addEventListeners;
+export { addEventListeners };
