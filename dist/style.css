@@ -92,7 +92,7 @@ body {
   grid-template-rows: 15vh 1fr;
   grid-template-columns: 10% 1fr;
   grid-template-areas:
-    'info info'
+    'none info'
     'side todo';
 }
 
@@ -243,6 +243,7 @@ i {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 1fr;
   place-items: center center;
+  padding: 16px;
   font-size: 16px;
   font-weight: 500;
 }
@@ -287,4 +288,9 @@ input[type='checkbox']:checked {
 #error-text {
   display: none;
   color: var(--tertiary-color);
+}
+
+.task-item p {
+  width: 100%;
+  word-break: break-all;
 }
