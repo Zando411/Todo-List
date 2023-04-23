@@ -1,4 +1,5 @@
 import { closeListForm, openListForm } from './forms';
+import { listEventListener } from './listLogic';
 import { getInputValues, createTask, checkCheckbox } from './taskLogic';
 
 function addEventListeners() {
@@ -18,6 +19,8 @@ function addEventListeners() {
 
   const closeForm = document.getElementById('close-form');
   closeForm.addEventListener('click', closeListForm);
+
+  listEventListener();
 }
 
 export { addEventListeners };

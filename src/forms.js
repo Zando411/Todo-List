@@ -1,4 +1,4 @@
-import { createList, renderLists, lists } from './listLogic';
+import { createList, renderLists, lists, saveAndRender } from './listLogic';
 
 function openListForm() {
   let form = document.getElementById('list-form');
@@ -15,11 +15,11 @@ function closeListForm() {
 
   let newListName = input.value;
 
-  const list = createList(name);
+  const list = createList(newListName);
   input.value = '';
   lists.push(list);
   form.style.display = 'none';
-  renderLists();
+  saveAndRender();
 }
 
 export { openListForm, closeListForm };
