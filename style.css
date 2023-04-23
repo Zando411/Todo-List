@@ -90,7 +90,7 @@ body {
   background-color: var(--primary-color);
   display: grid;
   grid-template-rows: 15vh 1fr;
-  grid-template-columns: 10% 1fr;
+  grid-template-columns: 15% 1fr;
   grid-template-areas:
     'none info'
     'side todo';
