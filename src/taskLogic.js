@@ -25,4 +25,23 @@ function getInputValues() {
   return { name, description, date, priority };
 }
 
-export default getInputValues;
+// TODO add indexing
+function createTask(name, description, date, priority) {
+  const currentTasks = document.getElementById('current-tasks');
+  const newTask = document.createElement('div');
+  newTask.setAttribute('class', 'task-item');
+
+  let newTaskHTML = `
+  <div class="checkbox">
+  <input type="checkbox" name="task" id="Task-1" />
+  <div>${name}</div>
+  </div>
+  <div>${description}</div>
+  <div>${date}</div>
+  <div>${priority}</div>`;
+
+  newTask.innerHTML = newTaskHTML;
+  currentTasks.appendChild(newTask);
+}
+
+export { getInputValues, createTask };

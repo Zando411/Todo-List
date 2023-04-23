@@ -246,6 +246,7 @@ i {
   padding: 16px;
   font-size: 16px;
   font-weight: 500;
+  gap: 8px;
 }
 
 #current-tasks {
@@ -255,10 +256,11 @@ i {
 }
 
 .checkbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  place-items: center;
   gap: 8px;
+  justify-self: start;
 }
 
 .checkbox p {
@@ -290,7 +292,11 @@ input[type='checkbox']:checked {
   color: var(--tertiary-color);
 }
 
-.task-item p {
-  width: 100%;
-  word-break: break-all;
+.task-item div {
+  word-break: break-word;
+}
+
+.completed {
+  opacity: 95%;
+  text-decoration: line-through;
 }
