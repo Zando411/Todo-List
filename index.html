@@ -20,7 +20,7 @@
   <body>
     <div id="list-sidebar">
       <h1>
-        Lists <i class="fa-solid fa-plus hover" style="color: #f8f7f9"></i>
+        Lists <i class="fa-solid fa-plus hover" style="color: #f8f7f9" id="new-list"></i>
       </h1>
       <div class="lists">
         <div class="list-item" id="list-1">
@@ -71,9 +71,9 @@
       <div class="info-field">
         <label for="priority">Priority</label>
         <select name="priority" id="priority">
-          <option value="low">Low</option>
-          <option value="med">Medium</option>
-          <option value="high">High</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
         </select>
       </div>
       <div class="info-field">
@@ -83,6 +83,14 @@
           Add Task
         </button>
       </div>
+    </div>
+    <div id="list-form">
+      <div class="form-section">
+        <label for="list-name">Enter List Name</label>
+        <input type="text" name="list-name" id="list-name">
+      </div>
+
+      <button id="close-form">Submit</button>
     </div>
     <div id="tasks">
       <div id="task-header">

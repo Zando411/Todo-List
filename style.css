@@ -326,3 +326,45 @@ button.delete-task-btn {
   border: none;
   border-radius: 10px;
 }
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tertiary-color);
+  color: var(--secondary-color);
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  gap: 6px;
+  width: 120px;
+}
+
+#list-form {
+  background-color: var(--secondary-color);
+  grid-area: todo;
+  z-index: 10;
+  width: 500px;
+  height: 200px;
+  border-radius: 10px;
+  margin: auto;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#list-form label {
+  color: black;
+}
+
+#list-form input {
+  width: 50%;
+}
+
+.form-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
