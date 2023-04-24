@@ -93,7 +93,6 @@ function renderTasks(selectedList) {
     priority.innerHTML = task.priority;
     tasksContainer.appendChild(taskElement);
 
-    // Add event listener to the checkbox
     checkbox.addEventListener('change', () => {
       task.complete = checkbox.checked;
       if (task.complete) {
@@ -104,14 +103,23 @@ function renderTasks(selectedList) {
       save();
     });
 
-    // Set initial class based on completion status
     if (task.complete) {
       taskItem.classList.add('completed');
     }
+    // Add event listener to the delete button
+    deleteButton.addEventListener('click', () => {
+      const selectedListIndex = lists.findIndex(
+        (list) => list.id === selectedListId
+      );
+      selectedList.tasks = selectedList.tasks.filter((t) => t.id !== task.id);
+      lists[selectedListIndex] = selectedList;
+      saveAndRender();
+    });
   });
 }
 
 function renderLists() {
+  console.log(lists);
   lists.forEach((list) => {
     const listElement = document.createElement('div');
     listElement.classList.add('lists');
