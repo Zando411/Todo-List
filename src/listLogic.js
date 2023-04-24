@@ -6,8 +6,40 @@ const taskTemplate = document.getElementById('task-template');
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
-let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
-let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
+let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [
+  {
+    id: 'ToDo',
+    name: 'Todo List',
+    tasks: [
+      {
+        id: 'Item1',
+        name: 'Trash',
+        description: 'Take out the trash to the curb',
+        date: '4/24/2023',
+        priority: 'Medium',
+        complete: false,
+      },
+      {
+        id: 'Item2',
+        name: 'Gas',
+        description: 'Fill up the car with gas',
+        date: '4/23/2023',
+        priority: 'Low',
+        complete: true,
+      },
+      {
+        id: 'Item3',
+        name: 'Hang out',
+        description: 'Play games and have some fun!',
+        date: '4/29/2023',
+        priority: 'High',
+        complete: false,
+      },
+    ],
+  },
+];
+let selectedListId =
+  localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY) || 'ToDo';
 
 function listEventListener() {
   listsContainer.addEventListener('click', (e) => {
