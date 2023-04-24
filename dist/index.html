@@ -16,11 +16,17 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
   </head>
   <body>
     <div id="list-sidebar">
       <h1>
-        Lists <i class="fa-solid fa-plus hover" style="color: #f8f7f9" id="new-list"></i>
+        Lists
+        <i
+          class="fa-solid fa-plus hover"
+          style="color: #f8f7f9"
+          id="new-list"
+        ></i>
       </h1>
       <div class="lists" data-lists></div>
     </div>
@@ -74,7 +80,7 @@
     <div id="list-form">
       <div class="form-section">
         <label for="list-name">Enter List Name</label>
-        <input type="text" name="list-name" id="list-name">
+        <input type="text" name="list-name" id="list-name" />
       </div>
 
       <button id="close-form">Submit</button>
@@ -86,39 +92,35 @@
         <div><p>Time</p></div>
         <div><p class="last">Priority</p></div>
       </div>
-      <div id="current-tasks">
+      <div id="current-tasks" data-tasks>
         <div class="task-item">
           <div class="checkbox">
-            <input type="checkbox" name="task" id="Task-0" />
-            <p>This is the task</p>
+            <input type="checkbox" />
+            <p class="name"></p>
           </div>
-          <p>
-            We must complete this task soon. We really really do!!!! Important!!
-          </p>
-          <p>08/20/2005</p>
+          <p class="description"></p>
+          <p class="date"></p>
           <div class="last-box">
-            <p>High</p>
+            <p class="priority"></p>
             <button class="delete-task-btn">Delete</button>
           </div>
         </div>
-        <div class="task-item completed">
-          <div class="checkbox">
-            <input type="checkbox" name="task" id="Task-1" checked />
-            <p>This is the task</p>
-          </div>
-          <p>
-            We must complete this task soon. We really really do!!!! Important!!
-          </p>
-          <p>08/20/2005</p>
-          <div class="last-box">
-            <p>High</p>
-            <button class="delete-task-btn">Delete</button>
-          </div>
-        </div>
-        </div>
-        
       </div>
     </div>
-    <script src="main.js"></script>
+
+    <template class="#task-template">
+      <div class="task-item">
+        <div class="checkbox">
+          <input type="checkbox" />
+          <p class="name"></p>
+        </div>
+        <p class="description"></p>
+        <p class="date"></p>
+        <div class="last-box">
+          <p class="priority"></p>
+          <button class="delete-task-btn">Delete</button>
+        </div>
+      </div>
+    </template>
   </body>
 </html>

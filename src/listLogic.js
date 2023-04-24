@@ -1,9 +1,11 @@
 const listsContainer = document.querySelector('[data-lists]');
+const tasksContainer = document.querySelector('[data-tasks]');
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
+const selectedList = lists.find((list) => list.id === selectedListId);
 
 function listEventListener() {
   listsContainer.addEventListener('click', (e) => {
@@ -40,11 +42,22 @@ function save() {
 
 function saveAndRender() {
   save();
+  render();
+}
+
+function render() {
+  clearElement(listsContainer);
   renderLists();
+  if (selectedListId == null) {
+    tasksContainer.style.display = 'none';
+  } else {
+    tasksContainer.style.display = '';
+  }
+  clearElement(tasksContainer);
+  renderTasks(selectedList);
 }
 
 function renderLists() {
-  clearElement(listsContainer);
   lists.forEach((list) => {
     const listElement = document.createElement('div');
     listElement.classList.add('lists');
@@ -72,4 +85,11 @@ function clearElement(element) {
   }
 }
 
-export { renderLists, createList, lists, saveAndRender, listEventListener };
+export {
+  renderLists,
+  createList,
+  lists,
+  saveAndRender,
+  listEventListener,
+  render,
+};
