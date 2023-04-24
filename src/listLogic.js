@@ -92,6 +92,22 @@ function renderTasks(selectedList) {
     date.innerHTML = task.date;
     priority.innerHTML = task.priority;
     tasksContainer.appendChild(taskElement);
+
+    // Add event listener to the checkbox
+    checkbox.addEventListener('change', () => {
+      task.complete = checkbox.checked;
+      if (task.complete) {
+        taskItem.classList.add('completed');
+      } else {
+        taskItem.classList.remove('completed');
+      }
+      save();
+    });
+
+    // Set initial class based on completion status
+    if (task.complete) {
+      taskItem.classList.add('completed');
+    }
   });
 }
 
