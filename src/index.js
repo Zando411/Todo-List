@@ -1,6 +1,5 @@
 import { addEventListeners, updateEventListeners } from './displayHandler';
-import { renderLists } from './listLogic';
+import { render } from './listLogic';
 
 addEventListeners();
-
-renderLists();
+render();

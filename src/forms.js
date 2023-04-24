@@ -1,4 +1,4 @@
-import { createList, renderLists, lists, saveAndRender } from './listLogic';
+import { createList, lists, saveAndRender } from './listLogic';
 
 function openListForm() {
   let form = document.getElementById('list-form');

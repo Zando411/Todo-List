@@ -86,39 +86,24 @@
         <div><p>Time</p></div>
         <div><p class="last">Priority</p></div>
       </div>
-      <div id="current-tasks">
-        <div class="task-item">
-          <div class="checkbox">
-            <input type="checkbox" name="task" id="Task-0" />
-            <p>This is the task</p>
-          </div>
-          <p>
-            We must complete this task soon. We really really do!!!! Important!!
-          </p>
-          <p>08/20/2005</p>
-          <div class="last-box">
-            <p>High</p>
-            <button class="delete-task-btn">Delete</button>
-          </div>
-        </div>
-        <div class="task-item completed">
-          <div class="checkbox">
-            <input type="checkbox" name="task" id="Task-1" checked />
-            <p>This is the task</p>
-          </div>
-          <p>
-            We must complete this task soon. We really really do!!!! Important!!
-          </p>
-          <p>08/20/2005</p>
-          <div class="last-box">
-            <p>High</p>
-            <button class="delete-task-btn">Delete</button>
-          </div>
-        </div>
-        </div>
+      <div id="current-tasks" data-tasks></div>
         
       </div>
     </div>
+    <template id="task-template">
+      <div class="task-item">
+        <div class="checkbox">
+          <input type="checkbox" />
+          <p class="name"></p>
+        </div>
+        <p class="description"></p>
+        <p class="date"></p>
+        <div class="last-box">
+          <p class="priority"></p>
+          <button class="delete-task-btn"></button>
+        </div>
+      </div>
+    </template>
     <script src="main.js"></script>
   </body>
 </html>

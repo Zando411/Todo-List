@@ -1,4 +1,7 @@
+import { renderTasks } from './taskLogic';
+
 const listsContainer = document.querySelector('[data-lists]');
+const taskContainer = document.querySelector('[data-tasks]');
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
@@ -29,7 +32,16 @@ function createList(name) {
   return {
     id: Date.now().toString(),
     name: name,
-    tasks: [],
+    tasks: [
+      {
+        id: 'tessst',
+        name: 'Test',
+        description: 'this is the description',
+        date: '08/20/2005',
+        priority: 'High',
+        complete: false,
+      },
+    ],
   };
 }
 
@@ -40,11 +52,27 @@ function save() {
 
 function saveAndRender() {
   save();
+  render();
+}
+
+function render() {
+  clearElement(listsContainer);
   renderLists();
+  if (selectedListId == null) {
+    taskContainer.style.display = 'none';
+  } else {
+    taskContainer.style.display = '';
+  }
+  renderIncompleteTasks(selectedList);
+  clearElement(taskContainer);
+  renderTasks();
+}
+
+function renderIncompleteTasks(selectedList) {
+  const incompleteTasks = selectedList.tasks.filter((task) => !task.complete);
 }
 
 function renderLists() {
-  clearElement(listsContainer);
   lists.forEach((list) => {
     const listElement = document.createElement('div');
     listElement.classList.add('lists');
@@ -72,4 +100,8 @@ function clearElement(element) {
   }
 }
 
-export { renderLists, createList, lists, saveAndRender, listEventListener };
+const selectedList = lists.find((list) => list.id === selectedListId);
+
+export { render, createList, lists, saveAndRender, listEventListener };
+
+export { selectedList };

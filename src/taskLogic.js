@@ -1,4 +1,7 @@
-import addEventListeners from './displayHandler';
+import updateEventListeners from './displayHandler';
+import { selectedList } from './listLogic';
+
+const taskTemplate = document.getElementById('task-template');
 
 function getInputValues() {
   const name = document.getElementById('name').value;
@@ -27,30 +30,15 @@ function getInputValues() {
   return { name, description, date, priority };
 }
 
-// TODO add indexing
-function createTask(name, description, date, priority) {
-  const currentTasks = document.getElementById('current-tasks');
-  const newTask = document.createElement('div');
-  newTask.setAttribute('class', 'task-item');
-
-  let newTaskHTML = `
-  <div class="checkbox">
-            <input type="checkbox" name="task" id="Task-1" />
-            <p>${name}</p>
-          </div>
-          <p>
-            ${description}
-          </p>
-          <p>${date}</p>
-          <div class="last-box">
-            <p>${priority}</p>
-            <button class="delete-task-btn">Delete</button>`;
-
-  newTask.innerHTML = newTaskHTML;
-  currentTasks.appendChild(newTask);
-
-  addEventListeners();
-}
+const newTask = (name, description, date, priority) => {
+  return {
+    name,
+    description,
+    date,
+    priority,
+    complete: false,
+  };
+};
 
 function checkCheckbox(event) {
   const taskItem = this.closest('.task-item');
@@ -61,4 +49,22 @@ function checkCheckbox(event) {
   }
 }
 
-export { getInputValues, createTask, checkCheckbox };
+function renderTasks(selectedList, name, description, date, priority) {
+  selectedList.tasks.forEach((task) => {
+    const taskElement = document.importNode(taskTemplate.content, true);
+    const checkbox = taskElement.querySelector('input');
+    const nameTag = taskElement.querySelector('p.name');
+    const descriptionTag = taskElement.querySelector('p.description');
+    const dateTag = taskElement.querySelector('p.date');
+    const priorityTag = taskElement.querySelector('p.priority');
+    checkbox.id = task.id;
+    checkbox.checked = task.complete;
+    nameTag.innerHTML = name;
+    descriptionTag.innerHTML = description;
+    dateTag.innerHTML = date;
+    priorityTag.innerHTML = priority;
+    taskContainer.appendChild(taskElement);
+  });
+}
+
+export { getInputValues, checkCheckbox, newTask, renderTasks };
