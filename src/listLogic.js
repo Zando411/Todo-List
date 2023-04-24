@@ -80,8 +80,12 @@ function renderTasks(selectedList) {
     const description = taskElement.querySelector('p.description');
     const date = taskElement.querySelector('p.date');
     const priority = taskElement.querySelector('p.priority');
+    const taskItem = taskElement.querySelector('.task-item');
+    const deleteButton = taskElement.querySelector('.delete-task-btn');
 
-    checkbox.id = task.id;
+    deleteButton.id = 'btn' + task.id;
+    taskItem.id = task.id;
+    checkbox.id = 'chk' + task.id;
     checkbox.checked = task.complete;
     name.innerHTML = task.name;
     description.innerHTML = task.description;
@@ -141,7 +145,7 @@ function addCheckboxEventListener() {
     if (e.target.tagName.toLowerCase() === 'input') {
       const selectedList = lists.find((list) => list.id === selectedListId);
       const selectedTask = selectedList.tasks.find(
-        (task) => task.id === e.target.id
+        (task) => 'chk' + task.id === e.target.id
       );
       selectedTask.complete = e.target.checked;
       save();
