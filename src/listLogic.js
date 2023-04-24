@@ -1,11 +1,13 @@
+import { clearInputs, getInputValues } from './taskLogic';
+
 const listsContainer = document.querySelector('[data-lists]');
 const tasksContainer = document.querySelector('[data-tasks]');
+const taskTemplate = document.getElementById('task-template');
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-const selectedList = lists.find((list) => list.id === selectedListId);
 
 function listEventListener() {
   listsContainer.addEventListener('click', (e) => {
@@ -35,6 +37,17 @@ function createList(name) {
   };
 }
 
+function createTask(name, description, date, priority) {
+  return {
+    id: Date.now().toString(),
+    name: name,
+    description: description,
+    date: date,
+    priority: priority,
+    complete: false,
+  };
+}
+
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
@@ -48,6 +61,8 @@ function saveAndRender() {
 function render() {
   clearElement(listsContainer);
   renderLists();
+
+  const selectedList = lists.find((list) => list.id === selectedListId);
   if (selectedListId == null) {
     tasksContainer.style.display = 'none';
   } else {
@@ -55,6 +70,25 @@ function render() {
   }
   clearElement(tasksContainer);
   renderTasks(selectedList);
+}
+
+function renderTasks(selectedList) {
+  selectedList.tasks.forEach((task) => {
+    const taskElement = document.importNode(taskTemplate.content, true);
+    const checkbox = taskElement.querySelector('input');
+    const name = taskElement.querySelector('p.name');
+    const description = taskElement.querySelector('p.description');
+    const date = taskElement.querySelector('p.date');
+    const priority = taskElement.querySelector('p.priority');
+
+    checkbox.id = task.id;
+    checkbox.checked = task.complete;
+    name.innerHTML = task.name;
+    description.innerHTML = task.description;
+    date.innerHTML = task.date;
+    priority.innerHTML = task.priority;
+    tasksContainer.appendChild(taskElement);
+  });
 }
 
 function renderLists() {
@@ -85,11 +119,44 @@ function clearElement(element) {
   }
 }
 
+function taskEventListener() {
+  const button = document.getElementById('add-task');
+  button.addEventListener('click', () => {
+    const inputValues = getInputValues();
+    const task = createTask(
+      inputValues.name,
+      inputValues.description,
+      inputValues.date,
+      inputValues.priority
+    );
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    selectedList.tasks.push(task);
+    clearInputs();
+    saveAndRender();
+  });
+}
+
+function addCheckboxEventListener() {
+  tasksContainer.addEventListener('click', (e) => {
+    if (e.target.tagName.toLowerCase() === 'input') {
+      const selectedList = lists.find((list) => list.id === selectedListId);
+      const selectedTask = selectedList.tasks.find(
+        (task) => task.id === e.target.id
+      );
+      selectedTask.complete = e.target.checked;
+      save();
+    }
+  });
+}
+
 export {
   renderLists,
   createList,
+  createTask,
   lists,
+  taskEventListener,
   saveAndRender,
   listEventListener,
   render,
+  addCheckboxEventListener,
 };

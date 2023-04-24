@@ -1,9 +1,11 @@
 import { closeListForm, openListForm } from './forms';
-import { listEventListener } from './listLogic';
+import {
+  addCheckboxEventListener,
+  listEventListener,
+  taskEventListener,
+} from './listLogic';
 
 function addEventListeners() {
-  const button = document.getElementById('add-task');
-
   const list = document.getElementById('new-list');
   list.addEventListener('click', openListForm);
 
@@ -11,6 +13,8 @@ function addEventListeners() {
   closeForm.addEventListener('click', closeListForm);
 
   listEventListener();
+  taskEventListener();
+  addCheckboxEventListener();
 }
 
 export { addEventListeners };
